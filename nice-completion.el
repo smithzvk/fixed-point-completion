@@ -80,6 +80,7 @@ it would have done without my intervention."
                     (select-window new-window)
                     (set-row-in-frame row-in-frame) ))
              (set-window-buffer target-window buf)
+             (set-window-dedicated-p target-window t)
              target-window ))
           ;; Lastly, we just let emacs do what it wants to do
           (t (let ((special-display-buffer-names
