@@ -20,9 +20,7 @@
     (+ top (row-in-window)) ))
 
 (defun set-row-in-frame (row-in-frame)
-  (let* ((window-start (window-start))
-         (window-start-row window-start)
-         (current-row (row-in-frame))
+  (let* ((current-row (row-in-frame))
          (discrepancy (- row-in-frame current-row)) )
     (save-excursion
      (goto-char (window-start))
