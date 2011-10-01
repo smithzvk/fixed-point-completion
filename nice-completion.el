@@ -1,10 +1,11 @@
 
 (defun row-in-window ()
   (interactive)
-  (let ((row 0))
+  (let ((row 0)
+        (window-start (window-start)) )
     (save-excursion
      (beginning-of-visual-line)
-     (while (>= (point) (window-start) )
+     (while (> (point) window-start)
        (beginning-of-visual-line 0)
        (incf row) ))
     row ))
