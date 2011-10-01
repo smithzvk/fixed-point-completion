@@ -1,4 +1,8 @@
 
+;; We are going to try and make completions behave better
+
+(defvar *completion-vertical-popup-size* 10)
+
 (defun row-in-window ()
   (interactive)
   (let ((row 0)
@@ -32,7 +36,6 @@
      (setf new-window-start (point)) )
     (set-window-start (selected-window) new-window-start) ))
 
-;; We are going to try and make completions behave better
 (add-to-list 'special-display-buffer-names '("*Completions*" my-display-completions))
 
 (defun my-display-completions (buf)
@@ -66,17 +69,20 @@ it would have done without my intervention."
            (let ((row-in-frame (row-in-frame)))
              ;; Are we going to split at the head or the foot?
              (cond ((eql current-window (minibuffer-window))
-                    ;; We need to treate the minibuffer specially
-                    (setf new-window (split-window-vertically -10))
+                    ;; We need to treat the minibuffer specially
+                    (setf new-window (split-window-vertically
+                                      (- *completion-vertical-popup-size*) ))
                     (setf target-window new-window)
                     (select-window current-window) )
                    ((< row-in-frame (floor (frame-height) 2))
-                    (setf new-window (split-window-vertically -10))
+                    (setf new-window (split-window-vertically
+                                      (- *completion-vertical-popup-size*) ))
                     (setf target-window new-window)
                     (select-window current-window)
                     (set-row-in-frame row-in-frame) )
                    (t
-                    (setf new-window (split-window-vertically 10))
+                    (setf new-window (split-window-vertically
+                                      *completion-vertical-popup-size* ))
                     (setf target-window current-window)
                     (select-window new-window)
                     (set-row-in-frame row-in-frame) ))
