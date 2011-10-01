@@ -35,7 +35,7 @@
     (set-window-start (selected-window) new-window-start) ))
 
 
-(defun my-display-completions (buf)
+(defun fixed-point-display-completions (buf)
   "If we find that there is already a visible *Completions*
 window, use it, otherwise if there is only one window in this
 frame, put a new completion window \(popup) in a small window at
