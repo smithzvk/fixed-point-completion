@@ -88,8 +88,11 @@ it would have done without my intervention."
              target-window ))
           ;; Lastly, we just let emacs do what it wants to do
           (t (let ((special-display-buffer-names
-                     (remove-if (lambda (x) (equal "*Completions*" (first x)))
-                                special-display-buffer-names )))
+                     (remove-if
+                      (lambda (x) (and (equal "*Completions*" (first x))
+                                       (eql 'fixed-point-display-completions
+                                            (second x) )))
+                      special-display-buffer-names )))
                (display-buffer "*Completions*" t) )))))
 
 (defun enable-fixed-point-completions ()
