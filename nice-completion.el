@@ -34,7 +34,6 @@
      (setf new-window-start (point)) )
     (set-window-start (selected-window) new-window-start) ))
 
-(add-to-list 'special-display-buffer-names '("*Completions*" my-display-completions))
 
 (defun my-display-completions (buf)
   "If we find that there is already a visible *Completions*
@@ -92,5 +91,15 @@ it would have done without my intervention."
                      (remove-if (lambda (x) (equal "*Completions*" (first x)))
                                 special-display-buffer-names )))
                (display-buffer "*Completions*" t) )))))
+
+(defun enable-fixed-point-completions ()
+  (add-to-list 'special-display-buffer-names
+               '("*Completions*" fixed-point-display-completions) ))
+
+(defun disable-fixed-point-completions ()
+  (setf special-display-buffer-names
+        (remove-if (lambda (x) (and (equal "*Completions*" (first x))
+                                    (eql 'fixed-point-display-completions
+                                         (second x) ))))))
 
 
