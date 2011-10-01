@@ -40,7 +40,10 @@
 window, use it, otherwise if there is only one window in this
 frame, put a new completion window \(popup) in a small window at
 the top of the current frame, otherwise, just let Emacs do what
-it would have done without my intervention."
+it would have done without my intervention.
+
+This kind of assumes that your single window frames are tall and
+skinny, which is very common."
   (let* (new-window
          (current-window (selected-window))
          (frame-windows (window-list frame 'no-minibuffer))
