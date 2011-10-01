@@ -22,18 +22,18 @@
 (defun set-row-in-frame (row-in-frame)
   (let* ((current-row (row-in-frame))
          (discrepancy (- row-in-frame current-row)) )
-    (save-excursion
-     (goto-char (window-start))
-     (while (> discrepancy 0)
-       (previous-line)
-       (decf discrepancy) )
-     (while (< discrepancy 0)
-       (next-line)
-       (incf discrepancy) )
-     ;; We are now at the desired starting point
-     (setf new-window-start (point)) )
-    (set-window-start (selected-window) new-window-start) ))
-
+    (unless (= row-in-frame current-row)
+      (save-excursion
+       (goto-char (window-start))
+       (while (> discrepancy 0)
+              (previous-line)
+              (decf discrepancy) )
+       (while (< discrepancy 0)
+              (next-line)
+              (incf discrepancy) )
+       ;; We are now at the desired starting point
+       (setf new-window-start (point)) )
+    (set-window-start (selected-window) new-window-start) )))
 
 (defun fixed-point-display-completions (buf)
   "If we find that there is already a visible *Completions*
