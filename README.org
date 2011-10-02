@@ -1,7 +1,7 @@
 
 * Fixed Point Completions for Emacs
 
-This project was a "scratch and itch" sort of project.  I always found
+This project was a "scratch an itch" sort of project.  I always found
 completion in Emacs to be annoying for one reason.  When I perform a completion,
 the location of the point (Emacs parlance for cursor) on the screen often times
 changes.  This forces me to go searching for where the point has moved to in
