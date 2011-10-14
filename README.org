@@ -17,4 +17,16 @@ function to enable the behavior and one to disable it.  There is also a
 variable, =*completion-vertical-popup-size*=, that determines the number of rows
 the pop-up window should have.  And that's about it.
 
-This should alter the way completions happen in all of Emacs.
+To use Fixed Point Completions, just download the file and place it in your load
+path and use =M-x load-library RET fixed-point-completions RET=.  To enable the
+completion behavior, run the function =(enable-fixed-point-completions)=.  If
+you want to do this on startup, you can just add this to your =.emacs= file:
+
+#+BEGIN_SRC lisp
+(load "/path/to/fixed-point-completions.el")
+(enable-fixed-point-completions)
+#+END_SRC
+
+And, naturally, running =(disable-fixed-point-completions)= will return Emacs to
+it's normal completion behavior.  While Fixed Point Completions is enabled, is
+should alter the way all completions happen in all of Emacs.
